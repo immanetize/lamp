@@ -3,14 +3,9 @@
 - name: Include common.yml
   include: common.yml
 
-- name: Install holland-mysqldump packages for Redhat 6
+- name: Install holland-mysqldump packages for Redhat 
   yum: name=holland-mysqldump state=present
-  when: ansible_os_family == 'RedHat' and ansible_distribution_major_version|int < 7
-
-- name: Install holland-mysqldump on Redhat 7 base
-  include: RHEL7_mysqldump.yml
-  when: ansible_os_family == 'RedHat' and ansible_distribution_major_version|int == 7
-
+  when: ansible_os_family == 'RedHat' 
 
 - name: Download holland-mysqldump .deb file
   copy: src=holland-mysqldump_{{holland_version}}_all.deb dest=/tmp/holland-mysqldump_{{holland_version}}_all.deb
