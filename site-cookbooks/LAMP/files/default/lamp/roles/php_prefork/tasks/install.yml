@@ -3,12 +3,12 @@
 
 - name: Install PHP and packages - Debian
   apt: pkg={{ item }} state=installed update_cache=true
-  with_items: packages
+  with_items: "{{packages}}"
   when: ansible_os_family == 'Debian'
 
 - name: Install PHP and packages - RHEL
   yum: pkg={{ item }} state=installed
-  with_items: packages
+  with_items: "{{packages}}"
   when: ansible_os_family == 'RedHat'
 
 - name: create session path
